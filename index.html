@@ -35,10 +35,10 @@
     </div>
 
     <div class="flex items-center gap-2">
-      <span id="modeBadge" class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold">
-        ● Live Demo Ready
+      <span id="modeBadge" class="text-xs px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-semibold">
+        ⚠ Enter Sarvam API Key →
       </span>
-      <button onclick="toggleSettings()" class="text-xs bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 px-3 py-1.5 rounded-lg font-medium">
+      <button onclick="toggleSettings()" class="text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 px-3 py-1.5 rounded-lg font-bold">
         ⚙ Sarvam API Key
       </button>
     </div>
@@ -48,13 +48,18 @@
   <div id="settingsDrawer" class="hidden bg-slate-900/95 border-b border-slate-800 px-4 py-3">
     <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-3">
       <div class="flex-1 w-full">
-        <label class="block text-xs text-amber-400 font-semibold mb-1">Sarvam AI Subscription Key</label>
-        <input id="sarvamKey" type="password" placeholder="Enter Sarvam AI API Key..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400" />
+        <label class="block text-xs text-amber-400 font-semibold mb-1">Sarvam AI Subscription Key (Required for Natural Rayalaseema Telugu Voice)</label>
+        <input id="sarvamKey" type="password" placeholder="Paste your Sarvam AI API Key here..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400" />
       </div>
-      <button onclick="saveKey()" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm mt-4 sm:mt-5">
-        Save Key
+      <button onclick="saveKey()" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm mt-4 sm:mt-5">
+        Save & Activate Voice
       </button>
     </div>
+  </div>
+
+  <!-- Voice Status Banner -->
+  <div id="voiceStatus" class="bg-slate-950 border-b border-slate-800 px-4 py-1.5 text-center text-xs text-slate-400">
+    Voice Engine: Ready • Click <strong class="text-amber-400">⚙ Sarvam API Key</strong> at top-right to enable natural Indian Telugu voice
   </div>
 
   <!-- Main Workspace -->
@@ -224,7 +229,6 @@
   </main>
 
   <script>
-    // Authentic Rayalaseema / Anantapur Mandi Dictionary
     const mandiDictionary = {
       "இந்த தக்காளி பெட்டி என்ன விலை? எனக்கு 200 பெட்டி வேண்டும்.": "అన్నా, ఈ టమోటా బాక్స్ రేటు ఎంత పడుతుంది? నాకు 200 బాక్సులు కావాలన్నా.",
       "முதல் தரம் ஏற்றுமதி தக்காளி என்றால் 480 ரூபாய் தருகிறேன்.": "ఒకటో రకం ఎక్స్‌పోర్ట్ కాయ అయితే బాక్స్‌కి 480 రూపాయలు ఇస్తానన్నా.",
@@ -232,11 +236,23 @@
       "సరే అన్నా, 480 రూపాయలకే 200 బాక్సులు ఇచ్చేస్తా. లోడింగ్ ఖర్చు మీదే.": "சரி அண்ணா, 480 ரூபாய்க்கே 200 பெட்டிகள் தருகிறேன். ஏற்றுமதி செலவு உங்களுடையது."
     };
 
+    function updateBadge(connected, msg) {
+      const badge = document.getElementById('modeBadge');
+      const status = document.getElementById('voiceStatus');
+      if (connected) {
+        badge.className = "text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-semibold";
+        badge.innerText = "● Sarvam AI Voice Active";
+      }
+      if (msg) status.innerHTML = msg;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       const savedKey = localStorage.getItem('sarvam_api_key');
       if (savedKey) {
         document.getElementById('sarvamKey').value = savedKey;
-        document.getElementById('modeBadge').innerText = '● Sarvam AI Live API Connected';
+        updateBadge(true, 'Voice Engine: <strong class="text-emerald-400">Sarvam AI Native Indian Voice Ready</strong>');
+      } else {
+        document.getElementById('settingsDrawer').classList.remove('hidden');
       }
     });
 
@@ -248,7 +264,7 @@
       const key = document.getElementById('sarvamKey').value.trim();
       if (key) {
         localStorage.setItem('sarvam_api_key', key);
-        document.getElementById('modeBadge').innerText = '● Sarvam AI Live API Connected';
+        updateBadge(true, 'Voice Engine: <strong class="text-emerald-400">Sarvam AI Key Saved! Tap any phrase to hear Telugu voice.</strong>');
         toggleSettings();
       }
     }
@@ -291,7 +307,6 @@
       let translatedText = mandiDictionary[text];
       const apiKey = localStorage.getItem('sarvam_api_key');
 
-      // Sarvam AI Translate API in Colloquial Spoken Mode
       if (!translatedText && apiKey) {
         try {
           const response = await fetch('https://api.sarvam.ai/translate', {
@@ -337,37 +352,57 @@
       speakText(translatedText, targetLang);
     }
 
+    async function callSarvamTTS(text, lang, apiKey, model, speaker) {
+      const res = await fetch('https://api.sarvam.ai/text-to-speech', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-subscription-key': apiKey
+        },
+        body: JSON.stringify({
+          inputs: [text],
+          target_language_code: lang,
+          speaker: speaker,
+          model: model,
+          pace: 0.96,
+          enable_preprocessing: true
+        })
+      });
+      if (!res.ok) {
+        const errBody = await res.text();
+        throw new Error(`HTTP ${res.status}: ${errBody}`);
+      }
+      return await res.json();
+    }
+
     async function speakText(text, lang) {
       if (!text || text === "—" || text === "Translating...") return;
       const apiKey = localStorage.getItem('sarvam_api_key');
 
-      // Sarvam AI Bulbul TTS with natural Indian speaker
       if (apiKey) {
-        try {
-          const res = await fetch('https://api.sarvam.ai/text-to-speech', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'api-subscription-key': apiKey
-            },
-            body: JSON.stringify({
-              inputs: [text],
-              target_language_code: lang,
-              speaker: "ishitha",
-              model: "bulbul:v2",
-              pace: 0.98,
-              enable_preprocessing: true
-            })
-          });
-          const data = await res.json();
-          if (data.audios && data.audios[0]) {
-            const audio = new Audio("data:audio/wav;base64," + data.audios[0]);
-            audio.play();
-            return;
+        updateBadge(true, '🔊 Generating natural Indian voice via <strong class="text-emerald-400">Sarvam AI</strong>...');
+        // Try bulbul:v3 (ishitha) first, then bulbul:v2 (anushka) as automatic backup
+        const configs = [
+          { model: "bulbul:v3", speaker: "ishitha" },
+          { model: "bulbul:v2", speaker: "anushka" }
+        ];
+
+        for (const cfg of configs) {
+          try {
+            const data = await callSarvamTTS(text, lang, apiKey, cfg.model, cfg.speaker);
+            if (data.audios && data.audios[0]) {
+              const audio = new Audio("data:audio/wav;base64," + data.audios[0]);
+              await audio.play();
+              updateBadge(true, `🔊 Speaking via <strong class="text-emerald-400">Sarvam AI (${cfg.speaker})</strong>`);
+              return;
+            }
+          } catch (e) {
+            console.warn(`Sarvam ${cfg.model} attempt failed:`, e.message);
+            updateBadge(true, `<span class="text-amber-300">Sarvam note: ${e.message.slice(0, 70)}</span>`);
           }
-        } catch (e) {
-          console.warn("Sarvam TTS fallback:", e);
         }
+      } else {
+        updateBadge(false, '⚠ <strong class="text-amber-400">No Sarvam Key Saved</strong> — Using Windows fallback voice. Paste key above for real Telugu!');
       }
 
       window.speechSynthesis.cancel();
