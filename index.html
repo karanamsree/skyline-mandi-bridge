@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skyline AI — Rythu Bhasha Setu (Telugu ↔ Tamil Mandi Bridge)</title>
+  <title>Skyline AI — Rythu Bhasha Setu (Rayalaseema Telugu ↔ Tamil)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Telugu:wght@500;700&family=Noto+Sans+Tamil:wght@500;700&display=swap" rel="stylesheet">
   <style>
@@ -20,7 +20,7 @@
 </head>
 <body class="min-h-screen flex flex-col">
 
-  <!-- Top Header: Skyline AI + Horticulture Dept Branding -->
+  <!-- Top Header -->
   <header class="bg-slate-900 border-b border-amber-500/30 px-4 py-3 flex flex-wrap items-center justify-between gap-2">
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center font-extrabold text-slate-950 text-lg shadow">
@@ -30,7 +30,7 @@
         <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white">
           SKYLINE AI <span class="text-amber-400">| Rythu Bhasha Setu</span>
         </h1>
-        <p class="text-xs text-slate-400">Anantapur Tomato Mandi • Real-Time Telugu ↔ Tamil Voice Bridge</p>
+        <p class="text-xs text-slate-400">Anantapur Tomato Mandi • Rayalaseema Telugu ↔ Tamil Voice Bridge</p>
       </div>
     </div>
 
@@ -44,12 +44,12 @@
     </div>
   </header>
 
-  <!-- Optional Sarvam AI API Key Drawer -->
+  <!-- Sarvam AI API Key Drawer -->
   <div id="settingsDrawer" class="hidden bg-slate-900/95 border-b border-slate-800 px-4 py-3">
     <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center gap-3">
       <div class="flex-1 w-full">
-        <label class="block text-xs text-amber-400 font-semibold mb-1">Sarvam AI Subscription Key (Optional — Works in Instant Demo Mode without key)</label>
-        <input id="sarvamKey" type="password" placeholder="Enter Sarvam AI API Key (api-subscription-key)..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400" />
+        <label class="block text-xs text-amber-400 font-semibold mb-1">Sarvam AI Subscription Key</label>
+        <input id="sarvamKey" type="password" placeholder="Enter Sarvam AI API Key..." class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-400" />
       </div>
       <button onclick="saveKey()" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-lg text-sm mt-4 sm:mt-5">
         Save Key
@@ -76,7 +76,6 @@
           </button>
         </div>
 
-        <!-- Quick Demo Phrases for Office Presentation -->
         <div class="mb-3">
           <p class="text-[11px] text-blue-300/80 mb-1.5 font-medium">Quick Test Phrases (Tap to simulate Tamil Buyer):</p>
           <div class="flex flex-wrap gap-1.5">
@@ -89,7 +88,6 @@
           </div>
         </div>
 
-        <!-- Output Box -->
         <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
           <div>
             <span class="text-[11px] text-slate-400 uppercase font-semibold">Spoken Tamil:</span>
@@ -97,7 +95,7 @@
           </div>
           <div class="border-t border-slate-800 pt-2 flex items-start justify-between gap-2">
             <div>
-              <span class="text-[11px] text-emerald-400 uppercase font-semibold">Translated for Farmer (Telugu Audio Output):</span>
+              <span class="text-[11px] text-emerald-400 uppercase font-semibold">Rayalaseema Telugu for Farmer (Audio Output):</span>
               <p id="tamilToTelugu" class="telugu text-base sm:text-lg font-bold text-emerald-300 min-h-[28px]">—</p>
             </div>
             <button onclick="speakText(document.getElementById('tamilToTelugu').innerText, 'te-IN')" class="shrink-0 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 px-2.5 py-1.5 rounded-lg text-xs font-semibold">
@@ -107,12 +105,12 @@
         </div>
       </section>
 
-      <!-- FARMER CARD (TELUGU) -->
+      <!-- FARMER CARD (RAYALASEEMA TELUGU) -->
       <section class="bg-gradient-to-br from-emerald-950/80 to-slate-900 border border-emerald-500/40 rounded-2xl p-4 sm:p-5 shadow-xl">
         <div class="flex items-center justify-between mb-3">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Farmer (Anantapur Grower)</span>
-            <h2 class="text-lg font-bold text-white telugu">అనంతపురం రైతు (అమ్మకం)</h2>
+            <h2 class="text-lg font-bold text-white telugu">అనంతపురం రైతు (రాయలసీమ తెలుగు)</h2>
           </div>
           <button id="teluguMicBtn" onclick="startListening('te-IN')" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-3 rounded-xl shadow-lg transition">
             <span>🎤</span>
@@ -120,23 +118,21 @@
           </button>
         </div>
 
-        <!-- Quick Demo Phrases for Office Presentation -->
         <div class="mb-3">
-          <p class="text-[11px] text-emerald-300/80 mb-1.5 font-medium">Quick Test Phrases (Tap to simulate Anantapur Farmer):</p>
+          <p class="text-[11px] text-emerald-300/80 mb-1.5 font-medium">Quick Test Phrases (Natural Anantapur Mandi Telugu):</p>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="processUtterance('te-IN', 'ఇది నంబర్ వన్ క్వాలిటీ టమోటా అండి. పెట్టె 500 రూపాయలు పడుతుంది.')" class="text-xs bg-emerald-900/60 hover:bg-emerald-800 border border-emerald-500/30 px-2.5 py-1.5 rounded-lg telugu text-emerald-100 text-left">
-              "ఇది నంబర్ వన్ క్వాలిటీ టమోటా. పెట్టె 500 రూపాయలు."
+            <button onclick="processUtterance('te-IN', 'అన్నా ఇది ఒకటో రకం గట్టి కాయ. బాక్స్ 500 రూపాయలు పడుతుందన్నా.')" class="text-xs bg-emerald-900/60 hover:bg-emerald-800 border border-emerald-500/30 px-2.5 py-1.5 rounded-lg telugu text-emerald-100 text-left">
+              "అన్నా ఇది ఒకటో రకం గట్టి కాయ. బాక్స్ 500 రూపాయలు పడుతుందన్నా."
             </button>
-            <button onclick="processUtterance('te-IN', 'సరే అండి, 480 రూపాయలకు 200 పెట్టెలు ఇస్తాను. లోడింగ్ మీదే.')" class="text-xs bg-emerald-900/60 hover:bg-emerald-800 border border-emerald-500/30 px-2.5 py-1.5 rounded-lg telugu text-emerald-100 text-left">
-              "సరే, 480 రూపాయలకు 200 పెట్టెలు ఇస్తాను."
+            <button onclick="processUtterance('te-IN', 'సరే అన్నా, 480 రూపాయలకే 200 బాక్సులు ఇచ్చేస్తా. లోడింగ్ ఖర్చు మీదే.')" class="text-xs bg-emerald-900/60 hover:bg-emerald-800 border border-emerald-500/30 px-2.5 py-1.5 rounded-lg telugu text-emerald-100 text-left">
+              "సరే అన్నా, 480 రూపాయలకే 200 బాక్సులు ఇచ్చేస్తా."
             </button>
           </div>
         </div>
 
-        <!-- Output Box -->
         <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
           <div>
-            <span class="text-[11px] text-slate-400 uppercase font-semibold">Spoken Telugu:</span>
+            <span class="text-[11px] text-slate-400 uppercase font-semibold">Spoken Rayalaseema Telugu:</span>
             <p id="teluguSpoken" class="telugu text-sm sm:text-base text-emerald-200 min-h-[24px]">—</p>
           </div>
           <div class="border-t border-slate-800 pt-2 flex items-start justify-between gap-2">
@@ -156,7 +152,6 @@
     <!-- Right 4 Columns: Deal Lock & Horticulture Dept Live Analytics -->
     <div class="lg:col-span-4 flex flex-col gap-4">
 
-      <!-- Deal Confirmation Card -->
       <section class="bg-slate-900 border border-amber-500/40 rounded-2xl p-4 shadow-xl">
         <h3 class="text-sm font-extrabold uppercase tracking-wider text-amber-400 mb-1">Lock Mandi Deal & Receipt</h3>
         <p class="text-xs text-slate-400 mb-3">Generates bilingual WhatsApp slip & updates Dept Dashboard</p>
@@ -175,11 +170,11 @@
 
           <div class="grid grid-cols-3 gap-2">
             <div>
-              <label class="block text-xs text-slate-400 mb-1">Crates (25kg)</label>
+              <label class="block text-xs text-slate-400 mb-1">Boxes (25kg)</label>
               <input id="crateQty" type="number" value="200" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-xs font-bold" />
             </div>
             <div>
-              <label class="block text-xs text-slate-400 mb-1">Rate / Crate (₹)</label>
+              <label class="block text-xs text-slate-400 mb-1">Rate / Box (₹)</label>
               <input id="crateRate" type="number" value="480" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white text-xs font-bold" />
             </div>
             <div>
@@ -197,7 +192,6 @@
         </div>
       </section>
 
-      <!-- Department Live Telemetry -->
       <section class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex-1 flex flex-col">
         <div class="flex items-center justify-between mb-2">
           <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-300">Horticulture Dept. Live Log</h3>
@@ -207,11 +201,11 @@
         <div class="grid grid-cols-2 gap-2 mb-3">
           <div class="bg-slate-950 border border-slate-800 rounded-xl p-2.5">
             <span class="text-[11px] text-slate-400 block">Today's Volume</span>
-            <span id="totalCratesStat" class="text-lg font-extrabold text-white">1,450 Crates</span>
+            <span id="totalCratesStat" class="text-lg font-extrabold text-white">1,450 Boxes</span>
           </div>
           <div class="bg-slate-950 border border-slate-800 rounded-xl p-2.5">
             <span class="text-[11px] text-slate-400 block">Avg Modal Price</span>
-            <span id="avgPriceStat" class="text-lg font-extrabold text-emerald-400">₹475 / Crate</span>
+            <span id="avgPriceStat" class="text-lg font-extrabold text-emerald-400">₹475 / Box</span>
           </div>
         </div>
 
@@ -221,7 +215,7 @@
               <span>Sreenivasulu → Salem Trader</span>
               <span class="text-emerald-400">₹70,500</span>
             </div>
-            <p class="text-slate-400 mt-0.5">150 Crates @ ₹470 • Grade-1 Export • WhatsApp Sent</p>
+            <p class="text-slate-400 mt-0.5">150 Boxes @ ₹470 • Grade-1 Export • WhatsApp Sent</p>
           </div>
         </div>
       </section>
@@ -230,13 +224,21 @@
   </main>
 
   <script>
-    // Built-in Mandi Phrase Dictionary for Zero-Latency Offline/Demo Fallback
+    // Authentic Rayalaseema / Anantapur Mandi Dictionary
     const mandiDictionary = {
-      "இந்த தக்காளி பெட்டி என்ன விலை? எனக்கு 200 பெட்டி வேண்டும்.": "ఈ టమోటా పెట్టె ధర ఎంత? నాకు 200 పెట్టెలు కావాలి.",
-      "முதல் தரம் ஏற்றுமதி தக்காளி என்றால் 480 ரூபாய் தருகிறேன்.": "మొదటి రకం ఎగుమతి టమోటా అయితే పెట్టెకు 480 రూపాయలు ఇస్తాను.",
-      "இది నంబర్ వన్ క్వాలిటీ టమోటా అండి. పెట్టె 500 రూపాయలు పడుతుంది.": "இது நம்பர் ஒன் தரமான தக்காளி. ஒரு பெட்டி 500 ரூபாய் ஆகும்.",
-      "సరే అండి, 480 రూపాయలకు 200 పెట్టెలు ఇస్తాను. లోడింగ్ మీదే.": "சரி, 480 ரூபாய்க்கு 200 பெட்டிகள் தருகிறேன். ஏற்றுமதி செலவு உங்களுடையது."
+      "இந்த தக்காளி பெட்டி என்ன விலை? எனக்கு 200 பெட்டி வேண்டும்.": "అన్నా, ఈ టమోటా బాక్స్ రేటు ఎంత పడుతుంది? నాకు 200 బాక్సులు కావాలన్నా.",
+      "முதல் தரம் ஏற்றுமதி தக்காளி என்றால் 480 ரூபாய் தருகிறேன்.": "ఒకటో రకం ఎక్స్‌పోర్ట్ కాయ అయితే బాక్స్‌కి 480 రూపాయలు ఇస్తానన్నా.",
+      "అన్నా ఇది ఒకటో రకం గట్టి కాయ. బాక్స్ 500 రూపాయలు పడుతుందన్నా.": "அண்ணா இது முதல் தரம் கெட்டியான காய். ஒரு பெட்டி 500 ரூபாய் ஆகும்.",
+      "సరే అన్నా, 480 రూపాయలకే 200 బాక్సులు ఇచ్చేస్తా. లోడింగ్ ఖర్చు మీదే.": "சரி அண்ணா, 480 ரூபாய்க்கே 200 பெட்டிகள் தருகிறேன். ஏற்றுமதி செலவு உங்களுடையது."
     };
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedKey = localStorage.getItem('sarvam_api_key');
+      if (savedKey) {
+        document.getElementById('sarvamKey').value = savedKey;
+        document.getElementById('modeBadge').innerText = '● Sarvam AI Live API Connected';
+      }
+    });
 
     function toggleSettings() {
       document.getElementById('settingsDrawer').classList.toggle('hidden');
@@ -251,11 +253,10 @@
       }
     }
 
-    // Speech Recognition (Browser Native Web Speech API)
     function startListening(lang) {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
-        alert("Please use Google Chrome or Microsoft Edge for live microphone input, or click the Quick Test Phrase buttons.");
+        alert("Please use Google Chrome or Microsoft Edge for live microphone input.");
         return;
       }
 
@@ -272,15 +273,8 @@
         processUtterance(lang, transcript);
       };
 
-      recognition.onerror = (e) => {
-        console.warn("Mic error:", e.error);
-        btn.classList.remove('pulse-ring');
-      };
-
-      recognition.onend = () => {
-        btn.classList.remove('pulse-ring');
-      };
-
+      recognition.onerror = () => btn.classList.remove('pulse-ring');
+      recognition.onend = () => btn.classList.remove('pulse-ring');
       recognition.start();
     }
 
@@ -297,7 +291,7 @@
       let translatedText = mandiDictionary[text];
       const apiKey = localStorage.getItem('sarvam_api_key');
 
-      // Use Sarvam AI Translate API (Mayura) if key is configured
+      // Sarvam AI Translate API in Colloquial Spoken Mode
       if (!translatedText && apiKey) {
         try {
           const response = await fetch('https://api.sarvam.ai/translate', {
@@ -311,7 +305,7 @@
               source_language_code: sourceLang,
               target_language_code: targetLang,
               speaker_gender: "Female",
-              mode: "formal",
+              mode: "colloquial",
               model: "mayura:v1"
             })
           });
@@ -322,7 +316,6 @@
         }
       }
 
-      // Free Public Fallback Translation if speaking custom sentences without API key
       if (!translatedText) {
         try {
           const sl = sourceLang === 'ta-IN' ? 'ta' : 'te';
@@ -348,7 +341,7 @@
       if (!text || text === "—" || text === "Translating...") return;
       const apiKey = localStorage.getItem('sarvam_api_key');
 
-      // Use Sarvam AI Bulbul TTS if API key is provided
+      // Sarvam AI Bulbul TTS with natural Indian speaker
       if (apiKey) {
         try {
           const res = await fetch('https://api.sarvam.ai/text-to-speech', {
@@ -360,8 +353,9 @@
             body: JSON.stringify({
               inputs: [text],
               target_language_code: lang,
-              speaker: "bulbul:v4",
-              pace: 1.0,
+              speaker: "ishitha",
+              model: "bulbul:v2",
+              pace: 0.98,
               enable_preprocessing: true
             })
           });
@@ -372,11 +366,10 @@
             return;
           }
         } catch (e) {
-          console.warn("Sarvam TTS fallback to browser voice:", e);
+          console.warn("Sarvam TTS fallback:", e);
         }
       }
 
-      // Browser Speech Synthesis Fallback
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = lang;
@@ -394,8 +387,8 @@
       const total = (qty * rate).toLocaleString('en-IN');
 
       runningCrates += qty;
-      document.getElementById('totalCratesStat').innerText = `${runningCrates.toLocaleString('en-IN')} Crates`;
-      document.getElementById('avgPriceStat').innerText = `₹${rate} / Crate`;
+      document.getElementById('totalCratesStat').innerText = `${runningCrates.toLocaleString('en-IN')} Boxes`;
+      document.getElementById('avgPriceStat').innerText = `₹${rate} / Box`;
 
       const logItem = document.createElement('div');
       logItem.className = "bg-emerald-950/40 border border-emerald-500/40 rounded-lg p-2.5";
@@ -404,7 +397,7 @@
           <span>${farmer} → ${buyer}</span>
           <span class="text-amber-400">₹${total}</span>
         </div>
-        <p class="text-emerald-300 mt-0.5">${qty} Crates @ ₹${rate} • ${grade} • Bilingual Slip Dispatched</p>
+        <p class="text-emerald-300 mt-0.5">${qty} Boxes @ ₹${rate} • ${grade} • Bilingual Slip Dispatched</p>
       `;
       document.getElementById('dealLog').prepend(logItem);
     }
